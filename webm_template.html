@@ -2,6 +2,7 @@
     <meta name="referrer" content="none">
     <head>
         <link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" href="scrollchan.css">
     </head>
     <body>
         <div id="feed">
@@ -16,61 +17,7 @@
                 </div>
             {% endfor %}
         </div>
+
+        <script src="scrollchan.js"></script>
     </body>
-    <style>
-        .text-overlay {
-          position: absolute;
-          display: block;
-          color: white;
-          padding: 48px;
-          font-size: 24px;
-          top: 0;
-          left: 0;
-          font-family: sans-serif;
-          background-color: black;
-          width: 100%;
-          z-index: 1;
-        }
-
-        /*
-        video {
-            display: block;
-        }
-        */
-        
-        .video-size {
-          height: 100%;
-          width: 100%;
-          background: black;
-          position: relative;
-          
-          /*
-          border-style: dotted;
-          border-color: red;
-          border-width: 8px;
-          */
-          overflow: hidden;
-        }
-
-        video {
-            /*object-fit: fill;*/
-            object-fit: contain;
-            width: 100%;
-            height: 100%;
-        }
-
-        #grid {
-          height: 100vh;
-        }
-
-        body {
-          margin: 0;
-        }
-
-        .swiper-container {
-            height: 100%;
-        }
-    </style>
-    <script src="node_modules/swiper/swiper-bundle.min.js"></script>
-    <script src="scrollchan.js"></script>
 </html>
