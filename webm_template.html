@@ -4,30 +4,34 @@
         <link rel="manifest" href="manifest.json">
     </head>
     <body>
-        <div id="feed" class="swiper-container">
-            <div class="swiper-wrapper">
-                {% for webm in webms %}
-                    <div class="swiper-slide video-size">
-                        <span class="text-overlay">
-                            {{webm.0}}
-                        </span>
-                        <video class="vid" controls loop>
-                            <source src="{{webm.1}}" type="video/webm">
-                        </video>
-                    </div>
-                {% endfor %}
-            </div>
+        <div id="feed">
+            {% for webm in webms %}
+                <div class="swiper-slide video-size">
+                    <span class="text-overlay">
+                        {{webm.0}}
+                    </span>
+                    <video class="vid" controls loop>
+                        <source src="{{webm.1}}" type="video/webm">
+                    </video>
+                </div>
+            {% endfor %}
         </div>
     </body>
     <style>
         .text-overlay {
           position: absolute;
+          display: block;
           color: white;
-          padding: 4px;
+          padding: 48px;
           font-size: 24px;
+          top: 0;
+          left: 0;
           font-family: sans-serif;
           background-color: black;
+          width: 100%;
+          z-index: 1;
         }
+
         /*
         video {
             display: block;
@@ -38,6 +42,7 @@
           height: 100%;
           width: 100%;
           background: black;
+          position: relative;
           
           /*
           border-style: dotted;
@@ -69,9 +74,12 @@
             <script src="node_modules/swiper/swiper-bundle.min.js"></script>
             <script>
                 //const Swipe = require('swipejs');
+                /*
                 var Swiper = new Swiper('.swiper-container', {
                     direction: 'vertical',
                     simulateTouch: true,
+                    freeMode: true,
+                    speed: 0,
                 });
 
                 Swiper.on('slideChange', function() {
@@ -80,6 +88,7 @@
                     this.slides[this.previousIndex].querySelector('.vid').pause();
                     console.log('Playing video');
                 });
+               */
 
                 var videoGrid = document.getElementById("grid");
 
@@ -90,15 +99,8 @@
 var vids = document.getElementsByClassName("vid");
 /* maybe whatever video is in the center of the screen? */
 window.addEventListener('scroll', () => {
-    return;
-/*
-  console.log(vids.length);
-  console.log('scroll');
-  console.log(window.innerHeight / 2);
-  */
 
-	/*
-  some attempts at improving scrolling; not really what I want */
+  /* some attempts at improving scrolling; not really what I want */
   // animate scroll, stretch between windows, etc. hop between webms.
   // also reduce loading (probably w/ basic paging on the back end)
 
