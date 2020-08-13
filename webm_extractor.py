@@ -9,8 +9,8 @@ WebmThread = namedtuple('WebmThread', 'thread_url webm_url thread_title')
 def get_webm_threads(board, raw_threads):
     webms = [ 
         WebmThread(
-            f'https://a.4cdn.org/po/thread/{post["no"]}.json',
-            f'https://i.4cdn.org/wsg/{post["tim"]}.webm',
+            f'https://a.4cdn.org/{board}/thread/{post["no"]}.json',
+            f'https://i.4cdn.org/{board}/{post["tim"]}.webm',
             (post['sub'] if 'sub' in post else '')
         ) 
 
