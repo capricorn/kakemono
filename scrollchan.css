@@ -29,6 +29,27 @@
     padding-top: 8px;
 }
 
+.view-thread-box {
+    position: absolute;
+    width: 5%;
+    right: 0;
+    /*background: gray;*/
+    height: 100%;
+    /*opacity: 60%;*/
+    display: flex;
+    align-items: center;
+}
+
+.view-thread-box:hover {
+    background: gray;
+    opacity: 60%;
+}
+
+.thread-arrow-span {
+    font-size: 48px !important;
+    color: white;
+}
+
 /*
 video {
     display: block;

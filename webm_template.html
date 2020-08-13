@@ -3,19 +3,27 @@
     <head>
         <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="scrollchan.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
             {% for webm in webms %}
                 <div class="video-size">
 
-                    <div class="text-overlay-container">
-                        <span class="text-overlay">
-                            test
-                            {{webm.0}}
-                        </span>
-                    </div>
+                    {% if webm.0 %}
+                        <div class="text-overlay-container">
+                            <span class="text-overlay">
+                                {{webm.0}}
+                            </span>
+                        </div>
+                    {% endif %}
 
                     <video class="vid" controls loop src="{{webm.1}}" type="video/webm"></video>
+
+                    <div class="view-thread-box">
+                        <span class="thread-arrow-span material-icons">
+                          keyboard_arrow_right
+                        </span>
+                  </div>
                 </div>
             {% endfor %}
 
