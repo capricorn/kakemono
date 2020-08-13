@@ -9,15 +9,13 @@
             {% for webm in webms %}
                 <div class="video-size">
 
-                    {% if webm.0 %}
+                    {% if webm.thread_title %}
                         <div class="text-overlay-container">
-                            <span class="text-overlay">
-                                {{webm.0}}
-                            </span>
+                            <span class="text-overlay">{{webm.thread_title}}</span>
                         </div>
                     {% endif %}
 
-                    <video class="vid" controls loop src="{{webm.1}}" type="video/webm"></video>
+                    <video class="vid" controls loop src="{{webm.webm_url}}" type="video/webm"></video>
 
                     <div class="view-thread-box">
                         <span class="thread-arrow-span material-icons">

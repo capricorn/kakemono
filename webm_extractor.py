@@ -1,6 +1,23 @@
+from collections import namedtuple
+
 from jinja2 import Template
 
 import fourchan
+
+WebmThread = namedtuple('WebmThread', 'thread_url webm_url thread_title')
+
+def get_webm_threads(board, raw_threads):
+    webms = [ 
+        WebmThread(
+            f'https://a.4cdn.org/po/thread/{post["no"]}.json',
+            f'https://i.4cdn.org/wsg/{post["tim"]}.webm',
+            (post['sub'] if 'sub' in post else '')
+        ) 
+
+        for post in posts if ('ext' in post and post['ext'] == '.webm') 
+    ]
+
+    return webms
 
 catalog = fourchan.get_catalog('wsg')
 
@@ -9,12 +26,8 @@ posts = []
 for page in catalog:
     posts.extend(page['threads'])
 
-webms = [ post for post in posts if ('ext' in post and post['ext'] == '.webm' ) ]
 
-# Work on returning an object; for now, a tuple w/ link
-# to webm, + thread subject
-# + any other useful information (creation date, for example)
-webms_src = [ (webm['sub'] if 'sub' in webm else '', f'https://i.4cdn.org/wsg/{webm["tim"]}.webm') for webm in webms ]
+webms = get_webm_threads('wsg', posts)
 
 with open('webm_template.html') as template:
-    print(Template(template.read()).render(webms=webms_src))
+    print(Template(template.read()).render(webms=webms[:6]))
