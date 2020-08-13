@@ -5,18 +5,19 @@
         <link rel="stylesheet" href="scrollchan.css">
     </head>
     <body>
-        <div id="feed">
             {% for webm in webms %}
                 <div class="video-size">
-                    <span class="text-overlay">
-                        {{webm.0}}
-                    </span>
-                    <video class="vid" controls loop>
-                        <source src="{{webm.1}}" type="video/webm">
-                    </video>
+
+                    <div class="text-overlay-container">
+                        <span class="text-overlay">
+                            test
+                            {{webm.0}}
+                        </span>
+                    </div>
+
+                    <video class="vid" controls loop src="{{webm.1}}" type="video/webm"></video>
                 </div>
             {% endfor %}
-        </div>
 
         <script src="scrollchan.js"></script>
     </body>
