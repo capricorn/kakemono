@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+    <meta name="referrer" content="none">
+    <head>
+        <link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" href="{% static "catalog/scrollchan.css" %}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        {% for url in webms.urls %}
+            <div class="video-size">
+
+                {% if webms.thread_title %}
+                    <div class="text-overlay-container">
+                        <span class="text-overlay">{{webms.thread_title}}</span>
+                    </div>
+                {% endif %}
+
+                <video class="vid" controls loop src="{{url}}" type="video/webm"></video>
+            </div>
+        {% endfor %}
+
+        <script src="{% static "catalog/scrollchan.js" %}"></script>
+    </body>
+</html>

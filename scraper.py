@@ -10,9 +10,17 @@ import webm_extractor as extractor
 
 #WebmEntry = namedtuple('WebmEntry', 'id last_modified urls')
 class WebmEntry(fourchan.ThreadMetadata):
+    def __init__(self, board, thread_id, title, webm_urls):
+        self.board = board
+        self.id = thread_id
+        self.title = title
+        self.urls = webm_urls
+
+    '''
     def __init__(self, thread_metadata, webm_urls):
         super().__init__(thread_metadata.id, thread_metadata.last_modified)
         self.urls = webm_urls
+    '''
 
 async def extract_thread_webms_task(db, queue):
     print('Extraction worker task started')
@@ -33,7 +41,18 @@ async def extract_thread_webms_task(db, queue):
             else:
                 # Guess we could just re-set the key.. (can later reload as json)
                 print('Setting keys for thread')
-                db.set(key, json.dumps(WebmEntry(thread_metadata, str(webm_urls)).__dict__))
+                db.set(
+                    key, 
+                    json.dumps(
+                        WebmEntry(
+                            board, 
+                            thread_metadata.id, 
+                            thread[0]['sub'] if 'sub' in thread[0] else '', 
+                            webm_urls
+                        ).__dict__
+                    )
+                )
+
         except HTTPError:
             print('Removing 404\'d thread')
             db.delete(key)
